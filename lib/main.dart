@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'input_page.dart';
 //git init && git add . && git commit -m "Initial commit" && git remote add origin https://github.com/bsanderson1981/section8 && git branch -M main && git push -u origin main
-
+// finished  #122
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
