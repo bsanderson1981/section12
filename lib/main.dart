@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 //import 'largebox.dart';
 // start section 12 #124
  const bottomContainerHeight  = 80.0;
+ const cardBackgroundColor = 0xFF1D1E33;
+ const bottomContainerColor  = 0xFFEB1555;
 
 void main() => runApp(BMICalculator());
 
@@ -30,33 +32,33 @@ class BMICalculator extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReuseCard(colour: Color(0xFF1D1E33),)
+                    child: ReuseCard(colour: Color(cardBackgroundColor),)
                   ),
                   Expanded(
-                    child: ReuseCard(colour: Color(0xFF1D1E33),
+                    child: ReuseCard(colour: Color(cardBackgroundColor),
                     )
                   ),
                 ],
               ),
             ),
             //middle box on screen
-            Expanded(child: ReuseCard(colour: Color(0xFF1D1E33)),
+            Expanded(child: ReuseCard(colour: Color(cardBackgroundColor)),
             ),
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child:ReuseCard(colour: Color(0xFF1D1E33))
+                    child:ReuseCard(colour: Color(cardBackgroundColor))
                   ),
                   Expanded(
-                    child: ReuseCard(colour: Color(0xFF1D1E33))
+                    child: ReuseCard(colour: Color(cardBackgroundColor))
                   ),
                 ],
               ),
             ),
           // footer red bar
           Container(
-            color: Color(0xFFEB1555),
+            color: Color(bottomContainerColor ),
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
             height: bottomContainerHeight,
@@ -81,7 +83,7 @@ class ReuseCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
-        color: Color(0XFF1D1E33),
+        color: Color(cardBackgroundColor),
         borderRadius: BorderRadius.circular(10.0),
       ),
     );
