@@ -61,7 +61,7 @@ class BMICalculator extends StatelessWidget {
 
 class ReuseCard extends StatelessWidget {
 
-  Color colour;
+  final Color colour;
   ReuseCard({required this.colour});
 
 
