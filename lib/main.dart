@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 //import 'smallbox.dart';
 //import 'largebox.dart';
 // start section 12 #124
+ const bottomContainerHeight  = 80.0;
+
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
@@ -57,7 +59,7 @@ class BMICalculator extends StatelessWidget {
             color: Color(0xFFEB1555),
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: 80,
+            height: bottomContainerHeight,
 
           )
           ],
