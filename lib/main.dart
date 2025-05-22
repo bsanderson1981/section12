@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'smallbox.dart';
+//import 'smallbox.dart';
 //import 'largebox.dart';
 
 void main() => runApp(BMICalculator());
@@ -28,49 +28,48 @@ class BMICalculator extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: SmallBox(
-                      child: const Icon(Icons.male, size: 80, color: Colors.white),
-                      label: 'MALE',
-                    ),
+                    child: ReuseableCard()
                   ),
                   Expanded(
-                    child: SmallBox(
-                      child: const Icon(Icons.female, size: 80, color: Colors.white),
-                      label: 'FEMALE',
-                    ),
+                    child: ReuseableCard()
                   ),
                 ],
               ),
             ),
             //middle box on screen
-            Expanded(child: Container(
-              margin: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                color: Color(0XFF1D1E33),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
+            Expanded(child: ReuseableCard(),
             ),
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: SmallBox(
-                      child: const Icon(Icons.male, size: 80, color: Colors.white),
-                      label: 'MALE',
-                    ),
+                    child:ReuseableCard()
                   ),
                   Expanded(
-                    child: SmallBox(
-                      child: const Icon(Icons.female, size: 80, color: Colors.white),
-                      label: 'FEMALE',
-                    ),
+                    child: ReuseableCard()
                   ),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ReuseableCard extends StatelessWidget {
+  const ReuseableCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        color: Color(0XFF1D1E33),
+        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
