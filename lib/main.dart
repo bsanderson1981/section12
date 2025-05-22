@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'smallbox.dart';
 //import 'largebox.dart';
-// start section 12 #124
+// finished  section 12 #124
  const bottomContainerHeight  = 80.0;
  const cardBackgroundColor = 0xFF1D1E33;
  const bottomContainerColor  = 0xFFEB1555;
