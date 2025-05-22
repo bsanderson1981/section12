@@ -28,25 +28,26 @@ class BMICalculator extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReuseableCard()
+                    child: ReuseCard(colour: Color(0xFF1D1E33),)
                   ),
                   Expanded(
-                    child: ReuseableCard()
+                    child: ReuseCard(colour: Color(0xFF1D1E33),
+                    )
                   ),
                 ],
               ),
             ),
             //middle box on screen
-            Expanded(child: ReuseableCard(),
+            Expanded(child: ReuseCard(colour: Color(0xFF1D1E33)),
             ),
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child:ReuseableCard()
+                    child:ReuseCard(colour: Color(0xFF1D1E33))
                   ),
                   Expanded(
-                    child: ReuseableCard()
+                    child: ReuseCard(colour: Color(0xFF1D1E33))
                   ),
                 ],
               ),
@@ -58,10 +59,12 @@ class BMICalculator extends StatelessWidget {
   }
 }
 
-class ReuseableCard extends StatelessWidget {
-  const ReuseableCard({
-    super.key,
-  });
+class ReuseCard extends StatelessWidget {
+
+  Color colour;
+  ReuseCard({required this.colour});
+
+
 
   @override
   Widget build(BuildContext context) {
