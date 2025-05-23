@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'icon_content.dart';
+import 'reusable_card.dart';
+
 
 const bottomContainerHeight = 80.0;
 const cardBackgroundColor = 0xFF1D1E33;
@@ -85,47 +88,5 @@ class BMICalculator extends StatelessWidget {
   }
 }
 
-class IconContent extends StatelessWidget {
-  final IconData iconType;
-  final String labelText;
 
-  const IconContent({
-    required this.iconType,
-    required this.labelText,
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(iconType, size: 140, color: Colors.white),
-        const SizedBox(height: 15),
-        Text(
-          labelText,
-          style: const TextStyle(color: Colors.white, fontSize: 18),
-        ),
-      ],
-    );
-  }
-}
-
-class ReuseCard extends StatelessWidget {
-  final Color colour;
-  final Widget? cardChild;
-
-  const ReuseCard({required this.colour, this.cardChild, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      margin: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: colour,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-    );
-  }
-}
