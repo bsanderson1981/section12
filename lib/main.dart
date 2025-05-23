@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const bottomContainerHeight = 80.0;
 const cardBackgroundColor = 0xFF1D1E33;
@@ -33,26 +33,18 @@ class BMICalculator extends StatelessWidget {
                   Expanded(
                     child: ReuseCard(
                       colour: const Color(cardBackgroundColor),
-                      cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(FontAwesomeIcons.mars, size: 80, color: Colors.white),
-                          SizedBox(height: 15),
-                          Text('MALE', style: TextStyle(color: Colors.white, fontSize: 18)),
-                        ],
+                      cardChild: IconContent(
+                        iconType: Icons.male,
+                        labelText: "MALE",
                       ),
                     ),
                   ),
                   Expanded(
                     child: ReuseCard(
                       colour: const Color(cardBackgroundColor),
-                      cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(FontAwesomeIcons.venus, size: 80, color: Colors.white),
-                          SizedBox(height: 15),
-                          Text('FEMALE', style: TextStyle(color: Colors.white, fontSize: 18)),
-                        ],
+                      cardChild: IconContent(
+                        iconType: Icons.female,
+                        labelText: "FEMALE",
                       ),
                     ),
                   ),
@@ -68,10 +60,14 @@ class BMICalculator extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReuseCard(colour: const Color(cardBackgroundColor)),
+                    child: ReuseCard(
+                      colour: const Color(cardBackgroundColor),
+                    ),
                   ),
                   Expanded(
-                    child: ReuseCard(colour: const Color(cardBackgroundColor)),
+                    child: ReuseCard(
+                      colour: const Color(cardBackgroundColor),
+                    ),
                   ),
                 ],
               ),
@@ -85,6 +81,32 @@ class BMICalculator extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class IconContent extends StatelessWidget {
+  final IconData iconType;
+  final String labelText;
+
+  const IconContent({
+    required this.iconType,
+    required this.labelText,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(iconType, size: 80, color: Colors.white),
+        const SizedBox(height: 15),
+        Text(
+          labelText,
+          style: const TextStyle(color: Colors.white, fontSize: 18),
+        ),
+      ],
     );
   }
 }
