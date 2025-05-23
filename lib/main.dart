@@ -100,7 +100,7 @@ class IconContent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(iconType, size: 80, color: Colors.white),
+        Icon(iconType, size: 140, color: Colors.white),
         const SizedBox(height: 15),
         Text(
           labelText,
