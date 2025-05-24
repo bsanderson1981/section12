@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
+//finished section 12 #126
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = 0xFF1D1E33;
