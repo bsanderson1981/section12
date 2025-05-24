@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-//finished section 12 start #127
+// finished section 12 finished  #127
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = 0xFF1D1E33;
 const inactiveCardColor = 0xFF111328;
 const bottomContainerColor = 0xFFEB1555;
+
+enum Gender {
+  male,
+  female,
+}
 
 void main() => runApp(const BMICalculator());
 
@@ -19,25 +24,7 @@ class BMICalculator extends StatefulWidget {
 }
 
 class _BMICalculatorState extends State<BMICalculator> {
-  Color malecardColor = const Color(inactiveCardColor);
-  Color femalecardColor = const Color(inactiveCardColor);
-
-  void updateColor(int gender) {
-    //MALE
-    if (gender == 1) {
-      malecardColor = malecardColor == const Color(inactiveCardColor)
-          ? const Color(activeCardColor)
-          : const Color(inactiveCardColor);
-      femalecardColor = const Color(inactiveCardColor); // unselect female
-    } else
-      //FEMALE
-      if (gender == 2) {
-      femalecardColor = femalecardColor == const Color(inactiveCardColor)
-          ? const Color(activeCardColor)
-          : const Color(inactiveCardColor);
-      malecardColor = const Color(inactiveCardColor); // unselect male
-    }
-  }
+  Gender? selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +50,13 @@ class _BMICalculatorState extends State<BMICalculator> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          updateColor(1);
+                          selectedGender = Gender.male;
                         });
                       },
                       child: ReuseCard(
-                        colour: malecardColor,
+                        colour: selectedGender == Gender.male
+                            ? const Color(activeCardColor)
+                            : const Color(inactiveCardColor),
                         cardChild: IconContent(
                           iconType: Icons.male,
                           labelText: "MALE",
@@ -79,11 +68,13 @@ class _BMICalculatorState extends State<BMICalculator> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          updateColor(2);
+                          selectedGender = Gender.female;
                         });
                       },
                       child: ReuseCard(
-                        colour: femalecardColor,
+                        colour: selectedGender == Gender.female
+                            ? const Color(activeCardColor)
+                            : const Color(inactiveCardColor),
                         cardChild: IconContent(
                           iconType: Icons.female,
                           labelText: "FEMALE",
