@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-// finished section 12 finished  #128
+// finished section 12 finished  #129
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = 0xFF1D1E33;
@@ -47,38 +47,32 @@ class _BMICalculatorState extends State<BMICalculator> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: ReuseCard(
+                      onPress: (){
                         setState(() {
-                          selectedGender = Gender.male;
-                        });
+                          selectedGender = Gender.male;});
                       },
-                      child: ReuseCard(
-                        colour: selectedGender == Gender.male
-                            ? const Color(activeCardColor)
-                            : const Color(inactiveCardColor),
-                        cardChild: IconContent(
-                          iconType: Icons.male,
-                          labelText: "MALE",
-                        ),
+                      colour: selectedGender == Gender.male
+                          ? const Color(activeCardColor)
+                          : const Color(inactiveCardColor),
+                      cardChild: IconContent(
+                        iconType: Icons.male,
+                        labelText: "MALE",
                       ),
                     ),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: ReuseCard(
+                      onPress: (){
                         setState(() {
-                          selectedGender = Gender.female;
-                        });
+                          selectedGender = Gender.female;});
                       },
-                      child: ReuseCard(
-                        colour: selectedGender == Gender.female
-                            ? const Color(activeCardColor)
-                            : const Color(inactiveCardColor),
-                        cardChild: IconContent(
-                          iconType: Icons.female,
-                          labelText: "FEMALE",
-                        ),
+                      colour: selectedGender == Gender.female
+                          ? const Color(activeCardColor)
+                          : const Color(inactiveCardColor),
+                      cardChild: IconContent(
+                        iconType: Icons.female,
+                        labelText: "FEMALE",
                       ),
                     ),
                   ),
