@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-// finished section 12 finished  #129
+import 'constants.dart';
 
-const bottomContainerHeight = 80.0;
-const activeCardColor = 0xFF1D1E33;
-const inactiveCardColor = 0xFF111328;
-const bottomContainerColor = 0xFFEB1555;
+// finished section 12 finished  #130
+
 
 enum Gender {
   male,
@@ -25,9 +23,11 @@ class BMICalculator extends StatefulWidget {
 
 class _BMICalculatorState extends State<BMICalculator> {
   Gender? selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -53,8 +53,8 @@ class _BMICalculatorState extends State<BMICalculator> {
                           selectedGender = Gender.male;});
                       },
                       colour: selectedGender == Gender.male
-                          ? const Color(activeCardColor)
-                          : const Color(inactiveCardColor),
+                          ? const Color(kactiveCardColor)
+                          : const Color(kinactiveCardColor),
                       cardChild: IconContent(
                         iconType: Icons.male,
                         labelText: "MALE",
@@ -68,8 +68,8 @@ class _BMICalculatorState extends State<BMICalculator> {
                           selectedGender = Gender.female;});
                       },
                       colour: selectedGender == Gender.female
-                          ? const Color(activeCardColor)
-                          : const Color(inactiveCardColor),
+                          ? const Color(kactiveCardColor)
+                          : const Color(kinactiveCardColor),
                       cardChild: IconContent(
                         iconType: Icons.female,
                         labelText: "FEMALE",
@@ -81,30 +81,68 @@ class _BMICalculatorState extends State<BMICalculator> {
             ),
             Expanded(
               child: ReuseCard(
-                colour: const Color(activeCardColor),
+                colour: const Color(kactiveCardColor),
+                cardChild: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Text(
+                        'HEIGHT',
+                        style: klabelTextStyle,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: <Widget>[
+                        Text(height.toString(),
+                          style: kfontsize
+                        ),
+                        Text('cm',style: klabelTextStyle)
+                      ],
+                    ),
+                    Slider(
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      activeColor: Color(0xFFEB1555),
+                      inactiveColor: Color(0xFF8D8E98),
+                      label: '$height',
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                        print (newValue);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
+
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
                     child: ReuseCard(
-                      colour: const Color(activeCardColor),
+                      colour: const Color(kactiveCardColor),
                     ),
                   ),
                   Expanded(
                     child: ReuseCard(
-                      colour: const Color(activeCardColor),
+                      colour: const Color(kactiveCardColor),
                     ),
                   ),
                 ],
               ),
             ),
             Container(
-              color: const Color(bottomContainerColor),
+              color: const Color(kbottomContainerColor),
               margin: const EdgeInsets.only(top: 10.0),
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kbottomContainerHeight,
             ),
           ],
         ),
