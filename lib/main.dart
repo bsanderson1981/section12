@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
@@ -6,11 +7,7 @@ import 'constants.dart';
 
 // finished section 12 finished  #131
 
-
-enum Gender {
-  male,
-  female,
-}
+enum Gender { male, female }
 
 void main() => runApp(const BMICalculator());
 
@@ -27,7 +24,6 @@ class _BMICalculatorState extends State<BMICalculator> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -37,10 +33,7 @@ class _BMICalculatorState extends State<BMICalculator> {
       ),
       home: Scaffold(
         backgroundColor: Colors.black,
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('BMI CALCULATOR'),
-        ),
+        appBar: AppBar(centerTitle: true, title: const Text('BMI CALCULATOR')),
         body: Column(
           children: <Widget>[
             Expanded(
@@ -48,13 +41,15 @@ class _BMICalculatorState extends State<BMICalculator> {
                 children: <Widget>[
                   Expanded(
                     child: ReuseCard(
-                      onPress: (){
+                      onPress: () {
                         setState(() {
-                          selectedGender = Gender.male;});
+                          selectedGender = Gender.male;
+                        });
                       },
-                      colour: selectedGender == Gender.male
-                          ? const Color(kactiveCardColor)
-                          : const Color(kinactiveCardColor),
+                      colour:
+                          selectedGender == Gender.male
+                              ? const Color(kactiveCardColor)
+                              : const Color(kinactiveCardColor),
                       cardChild: IconContent(
                         iconType: Icons.male,
                         labelText: "MALE",
@@ -63,13 +58,15 @@ class _BMICalculatorState extends State<BMICalculator> {
                   ),
                   Expanded(
                     child: ReuseCard(
-                      onPress: (){
+                      onPress: () {
                         setState(() {
-                          selectedGender = Gender.female;});
+                          selectedGender = Gender.female;
+                        });
                       },
-                      colour: selectedGender == Gender.female
-                          ? const Color(kactiveCardColor)
-                          : const Color(kinactiveCardColor),
+                      colour:
+                          selectedGender == Gender.female
+                              ? const Color(kactiveCardColor)
+                              : const Color(kinactiveCardColor),
                       cardChild: IconContent(
                         iconType: Icons.female,
                         labelText: "FEMALE",
@@ -86,31 +83,29 @@ class _BMICalculatorState extends State<BMICalculator> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Center(
-                      child: Text(
-                        'HEIGHT',
-                        style: klabelTextStyle,
-                      ),
-                    ),
+                    Center(child: Text('HEIGHT', style: klabelTextStyle)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
                       children: <Widget>[
-                        Text(height.toString(),
-                          style: kfontsize
-                        ),
-                        Text('cm',style: klabelTextStyle)
+                        Text(height.toString(), style: kfontsize),
+                        Text('cm', style: klabelTextStyle),
                       ],
                     ),
-                    SliderTheme(data: SliderTheme.of(context).copyWith(
-                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
-                      overlayShape: RoundSliderOverlayShape(overlayRadius: 24.0),
-                      thumbColor: Colors.red,
-                      activeTrackColor: Colors.white,
-                      inactiveTrackColor: Colors.grey,
-                      overlayColor: Colors.red, // fully opaque red
-                    ),
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        thumbShape: RoundSliderThumbShape(
+                          enabledThumbRadius: 12.0,
+                        ),
+                        overlayShape: RoundSliderOverlayShape(
+                          overlayRadius: 24.0,
+                        ),
+                        thumbColor: Colors.red,
+                        activeTrackColor: Colors.white,
+                        inactiveTrackColor: Colors.grey,
+                        overlayColor: Colors.red, // fully opaque red
+                      ),
 
                       child: Slider(
                         value: height.toDouble(),
@@ -123,11 +118,10 @@ class _BMICalculatorState extends State<BMICalculator> {
                           setState(() {
                             height = newValue.round();
                           });
-                          print (newValue);
+                          print(newValue);
                         },
                       ),
                     ),
-                    
                   ],
                 ),
               ),
@@ -137,14 +131,10 @@ class _BMICalculatorState extends State<BMICalculator> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReuseCard(
-                      colour: const Color(kactiveCardColor),
-                    ),
+                    child: ReuseCard(colour: const Color(kactiveCardColor)),
                   ),
                   Expanded(
-                    child: ReuseCard(
-                      colour: const Color(kactiveCardColor),
-                    ),
+                    child: ReuseCard(colour: const Color(kactiveCardColor)),
                   ),
                 ],
               ),
