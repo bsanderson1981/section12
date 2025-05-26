@@ -4,7 +4,7 @@ import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
 
-// finished section 12 finished  #130
+// finished section 12 finished  #131
 
 
 enum Gender {
@@ -103,20 +103,31 @@ class _BMICalculatorState extends State<BMICalculator> {
                         Text('cm',style: klabelTextStyle)
                       ],
                     ),
-                    Slider(
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      activeColor: Color(0xFFEB1555),
-                      inactiveColor: Color(0xFF8D8E98),
-                      label: '$height',
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.round();
-                        });
-                        print (newValue);
-                      },
+                    SliderTheme(data: SliderTheme.of(context).copyWith(
+                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                      overlayShape: RoundSliderOverlayShape(overlayRadius: 24.0),
+                      thumbColor: Colors.red,
+                      activeTrackColor: Colors.white,
+                      inactiveTrackColor: Colors.grey,
+                      overlayColor: Colors.red, // fully opaque red
                     ),
+
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        //activeColor: Colors.white, had to turn off made ball red
+                        //inactiveColor: Colors.grey,  ditto ditto
+                        label: '$height',
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.round();
+                          });
+                          print (newValue);
+                        },
+                      ),
+                    ),
+                    
                   ],
                 ),
               ),
