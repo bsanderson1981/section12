@@ -21,6 +21,7 @@ class BMICalculator extends StatefulWidget {
 class _BMICalculatorState extends State<BMICalculator> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -131,8 +132,39 @@ class _BMICalculatorState extends State<BMICalculator> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReuseCard(colour: const Color(kactiveCardColor)),
-                  ),
+                    child: ReuseCard(colour:  Color(kactiveCardColor,
+                    ),
+                     cardChild:
+                     Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget> [
+                        Text('Weight', style: klabelTextStyle,),
+                        Text(weight.toString(),
+                        style: kfontsize),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              onPressed: () {
+                                // your action here
+                              },
+                              backgroundColor: Color(0xFF4C4F5E),
+                              child: Icon(Icons.add, color: Colors.white,),
+                            ),
+                            SizedBox(width: 10,),
+                            FloatingActionButton(
+                              onPressed: () {
+                                // your action here
+                              },
+                              backgroundColor: Color(0xFF4C4F5E),
+                              child: Icon(Icons.add, color: Colors.white,),
+                            ),
+                          ],
+                        )
+
+                      ]
+                    )
+                    )),
                   Expanded(
                     child: ReuseCard(colour: const Color(kactiveCardColor)),
                   ),
