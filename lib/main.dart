@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
-
-// finished section 12 finished  #131
 
 enum Gender { male, female }
 
@@ -21,9 +18,23 @@ class BMICalculator extends StatefulWidget {
 
 class _BMICalculatorState extends State<BMICalculator> {
   Gender? selectedGender;
-  int height = 180;
-  int weight = 60;
-  int age = 70;
+  int defaultheight = 68;  // inches
+  int defaultweight = 150; // starting display weight
+  int age = 65; // starting display age
+
+  void updateWeight(String direction) {
+    final weightHelper = WeightButton(weight: defaultweight, plusminus: direction);
+    setState(() {
+      defaultweight = weightHelper.adjustWeight();
+    });
+  }
+
+  /*void updateAge(String direction) {
+    final ageHelper = WeightButton(weight: age, plusminus: direction);
+    setState(() {
+      age = ageHelper.adjustWeight();
+    });
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +60,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                           selectedGender = Gender.male;
                         });
                       },
-                      colour:
-                      selectedGender == Gender.male
+                      colour: selectedGender == Gender.male
                           ? const Color(kactiveCardColor)
                           : const Color(kinactiveCardColor),
                       cardChild: IconContent(
@@ -66,8 +76,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                           selectedGender = Gender.female;
                         });
                       },
-                      colour:
-                      selectedGender == Gender.female
+                      colour: selectedGender == Gender.female
                           ? const Color(kactiveCardColor)
                           : const Color(kinactiveCardColor),
                       cardChild: IconContent(
@@ -92,36 +101,29 @@ class _BMICalculatorState extends State<BMICalculator> {
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
                       children: <Widget>[
-                        Text(height.toString(), style: kfontsize),
-                        Text('cm', style: klabelTextStyle),
+                        Text(defaultheight.toString(), style: kfontsize),
+                        Text('in', style: klabelTextStyle),
                       ],
                     ),
                     SliderTheme(
                       data: SliderTheme.of(context).copyWith(
-                        thumbShape: RoundSliderThumbShape(
-                          enabledThumbRadius: 12.0,
-                        ),
-                        overlayShape: RoundSliderOverlayShape(
-                          overlayRadius: 24.0,
-                        ),
+                        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                        overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
                         thumbColor: Colors.red,
                         activeTrackColor: Colors.white,
                         inactiveTrackColor: Colors.grey,
-                        overlayColor: Colors.red, // fully opaque red
+                        overlayColor: Colors.red,
                       ),
-
+                      //HEIGHT SLIDER
                       child: Slider(
-                        value: height.toDouble(),
-                        min: 120.0,
-                        max: 220.0,
-                        //activeColor: Colors.white, had to turn off made ball red
-                        //inactiveColor: Colors.grey,  ditto ditto
-                        label: '$height',
+                        value: defaultheight.toDouble(),
+                        min: 48.0,
+                        max: 84.0,
+                        label: '$defaultheight',
                         onChanged: (double newValue) {
                           setState(() {
-                            height = newValue.round();
+                            defaultheight = newValue.round();
                           });
-                          print(newValue);
                         },
                       ),
                     ),
@@ -129,67 +131,61 @@ class _BMICalculatorState extends State<BMICalculator> {
                 ),
               ),
             ),
-
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      child: ReuseCard(colour: Color(kactiveCardColor
+                    child: ReuseCard(
+                      colour: const Color(kactiveCardColor),
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Weight', style: klabelTextStyle),
+                          Text(defaultweight.toString(), style: kfontsize),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () => updateWeight('plus'),
+                              ),
+                              const SizedBox(width: 10),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () => updateWeight('minus'),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                          cardChild:
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text('Weight', style: klabelTextStyle,),
-                                Text(weight.toString(),
-                                    style: kfontsize),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    RoundIconButton(icon: FontAwesomeIcons.plus),
-                                    /*FloatingActionButton(
-                              onPressed: () {
-                                // your action here
-                              },
-                              backgroundColor: Color(0xFF4C4F5E),
-                              child: Icon(Icons.add, color: Colors.white,),
-                            ),*/
-                                    SizedBox(width: 10,),
-                                    RoundIconButton(icon: FontAwesomeIcons.minus),
-                                    /*FloatingActionButton(
-                              onPressed: () {
-                                // your action here
-                              },
-                              backgroundColor: Color(0xFF4C4F5E),
-                              child: Icon(Icons.add, color: Colors.white,),
-                            ),*/
-                                  ],
-                                )
-
-                              ]
-                          )
-                      )),
+                    ),
+                  ),
                   Expanded(
-                      child: ReuseCard(colour: Color(kactiveCardColor),
-                          cardChild:
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text('Age', style: klabelTextStyle),
-                                Text(age.toString(),
-                                    style: kfontsize),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    RoundIconButton(icon: FontAwesomeIcons.plus),
-                                    SizedBox(width: 10,),
-                                    RoundIconButton(icon: FontAwesomeIcons.minus),
-                                  ],
-                                )
-
-                              ]
-                          )
-                      )),
+                    child: ReuseCard(
+                      colour: const Color(kactiveCardColor),
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Age', style: klabelTextStyle),
+                          Text(age.toString(), style: kfontsize),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                               onPressed: () {},
+                              ),
+                              const SizedBox(width: 10),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -207,23 +203,38 @@ class _BMICalculatorState extends State<BMICalculator> {
 }
 
 class RoundIconButton extends StatelessWidget {
-//  const RoundIconButton({super.key});
-  RoundIconButton({this.icon});
+  final IconData icon;
+  final VoidCallback onPressed;
 
-  final IconData? icon;
+  const RoundIconButton({super.key, required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       elevation: 0.0,
       child: Icon(icon, color: Colors.white),
-      onPressed: () {},
-      constraints: BoxConstraints.tightFor(
-          height: 56.0,
-          width: 56.0),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
+      onPressed: onPressed,
+      constraints: const BoxConstraints.tightFor(height: 56.0, width: 56.0),
+      shape: const CircleBorder(),
+      fillColor: const Color(0xFF4C4F5E),
     );
   }
 }
 
+class WeightButton {
+  final int weight;
+  final String plusminus;
+
+  WeightButton({required this.weight, required this.plusminus});
+
+  int adjustWeight() {
+    const int min = 85;
+    const int max = 350;
+    if (plusminus == 'plus' && weight < max) {
+      return weight + 1;
+    } else if (plusminus == 'minus' && weight > min) {
+      return weight - 1;
+    }
+    return weight;
+  }
+}
