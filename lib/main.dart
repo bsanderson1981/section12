@@ -5,6 +5,8 @@ import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
 
+//finished section 12 #132
+
 enum Gender { male, female }
 
 void main() => runApp(const BMICalculator());
