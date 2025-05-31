@@ -5,7 +5,8 @@ import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
 import 'results_page.dart';
-//finished 133
+import 'bottom_button.dart';
+//start 134
 enum Gender { male, female }
 
 void main() => runApp(const MyApp());
@@ -196,38 +197,17 @@ class _BMICalculatorState extends State<BMICalculator> {
               ],
             ),
           ),
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              print('Tapped CALCULATE');
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ResultsPage(),
-                ),
-              );
-            },
-            child: Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'CALCULATE',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              color: Color(kbottomContainerColor),
-              margin: const EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kbottomContainerHeight,
-            ),
-          ),
+          BottomButton(buttonTitle: 'CACULATE',onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>
+            ResultsPage()));
+
+          }, ),
         ],
       ),
     );
   }
 }
+
 
 class RoundIconButton extends StatelessWidget {
   final IconData icon;
