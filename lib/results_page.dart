@@ -4,7 +4,13 @@ import 'constants.dart';
 import 'bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key});
+
+  ResultsPage({@required this.bmiResults, @required this.resultText, @required this.interpretation});
+
+   String?  bmiResults = 'undefine';
+   String?  resultText = 'undefine';
+  String?  interpretation = 'undefine';
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +38,23 @@ class ResultsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Your Results',
+                resultText!,
               style: kTitleTextStyle,
             ),
            Text(
-             'Normal',
+             bmiResults!,
              style: kResultsTextStyle,
            ),
             Text(
-              '18.3',
+              interpretation!,
+              textAlign: TextAlign.center,
               style: kBMITextStyle,
             ),
-            Text(
+           /* Text(
               'Your BMI result is quite low, you should eat more',
               textAlign: TextAlign.center,
               style: kBodyTextStyle,
-            ),
+            ),*/
             BottomButton(
               onTap: () {
                 Navigator.pop(context); // Or any logic

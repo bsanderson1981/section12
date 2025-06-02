@@ -6,7 +6,9 @@ import 'reusable_card.dart';
 import 'constants.dart';
 import 'results_page.dart';
 import 'bottom_button.dart';
-//finished  #135  did not to all refactors widgets she did
+import 'calculator_brain.dart';
+import 'input_page.dart';
+//finished  #136
 enum Gender { male, female }
 
 void main() => runApp(const MyApp());
@@ -198,8 +200,16 @@ class _BMICalculatorState extends State<BMICalculator> {
             ),
           ),
           BottomButton(buttonTitle: 'CACULATE',onTap: () {
+
+            CalculatorBrain calc  = CalculatorBrain( height: defaultweight, weight: defaultheight);
+
             Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            ResultsPage()));
+            ResultsPage(
+              bmiResults:calc.calculateBMI(),
+              resultText: calc.getResults(),
+              interpretation:calc.getInterpritation() ,
+
+            )));
 
           }, ),
         ],
